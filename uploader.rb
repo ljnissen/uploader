@@ -1,6 +1,11 @@
-require Carrierwave
+require 'carrierwave'
+require 'rmagick'
 
 class MyUploader < Carrierwave::Uploader::Base
+	include CarrierWave::RMagick
+	version :thumb do
+		process :resize_to_fill => [200, 200]
+	end
 	storage :file
 end
 
